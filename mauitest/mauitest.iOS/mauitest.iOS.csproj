@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0-ios</TargetFramework>
+        <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>mauitest</RootNamespace>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseMaui>true</UseMaui>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <RunAOTCompilation>true</RunAOTCompilation>
+        <EnableLLVM>true</EnableLLVM>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\mauitest\mauitest.csproj" />
+    </ItemGroup>
+    <Target Name="SelectStaticRegistrar" AfterTargets="SelectRegistrar">
+        <PropertyGroup Condition="'$(Registrar)' == 'managed-static'">
+            <Registrar>static</Registrar>
+        </PropertyGroup>
+    </Target>
+
+</Project>
